@@ -9,21 +9,21 @@ namespace IncrementingAlgorithms.Figures
 {
     public class MovingLine : Line
     {
-        public Point RotationalCenter { get; }
+        public PointF RotationalCenter { get; }
         public int Speed { get; }
 
 
         public double AngularSpeed { get; }
 
-        //public double SmallAngularSpeed { get; }
 
-        public int FirstPointRotationalRadius { get; }
+        public double FirstPointRotationalRadius { get; }
 
-        public int SecondPointRotationalRadius { get; }
+        public double SecondPointRotationalRadius { get; }
 
+        public MovingLine Line { get; set; }
         public bool Clockwise { get; }
 
-        public MovingLine(Point firstPoint, Point secondPoint, 
+        public MovingLine(PointF firstPoint, PointF secondPoint, 
             int firstPointDistance, 
             int speed, bool clockwise) 
             : base(firstPoint, secondPoint)
@@ -38,20 +38,12 @@ namespace IncrementingAlgorithms.Figures
 
             AngularSpeed = Utils.GetAngularSpeed(Speed, FirstPointRotationalRadius >= SecondPointRotationalRadius ? FirstPointRotationalRadius : SecondPointRotationalRadius);
 
-
-
-
-            //BigRotationalRadius = Utils.GetBigRotationalRadius(FirstPoint, SecondPoint, RotationalCenter);
-            //SmallRotationalRadius = Utils.GetSmallRotationalRadius(FirstPoint, SecondPoint, RotationalCenter);
-
-            //BigAngularSpeed = Utils.GetAngularSpeed(Speed, BigRotationalRadius);
-            //SmallAngularSpeed = Utils.GetAngularSpeed(Speed, SmallRotationalRadius);
         }
 
-        public MovingLine(Point firstPoint, Point secondPoint, 
-            Point rotationalCenter, int speed, 
-            bool clockwise, double angularSpeed, int firstPointRotationalRadius,
-            int secondPointRotationalRadius) 
+        public MovingLine(PointF firstPoint, PointF secondPoint, 
+            PointF rotationalCenter, int speed, 
+            bool clockwise, double angularSpeed, double firstPointRotationalRadius,
+            double secondPointRotationalRadius) 
             : base(firstPoint, secondPoint)
         {
             RotationalCenter = rotationalCenter;

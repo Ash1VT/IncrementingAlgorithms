@@ -43,8 +43,8 @@ namespace IncrementingAlgorithms
             this.figuresComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.drawingPictureBox)).BeginInit();
             this.figuresDrawingPanel.SuspendLayout();
@@ -183,16 +183,6 @@ namespace IncrementingAlgorithms
             this.panel1.Size = new System.Drawing.Size(351, 244);
             this.panel1.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(120, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 27);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Drawing";
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -204,9 +194,19 @@ namespace IncrementingAlgorithms
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(120, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 27);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Drawing";
+            // 
             // timer1
             // 
-            this.timer1.Interval = 50;
+            this.timer1.Interval = 20;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MainForm
@@ -217,6 +217,9 @@ namespace IncrementingAlgorithms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.figuresDrawingPanel);
             this.Controls.Add(this.drawingPictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Drawing";
             this.Load += new System.EventHandler(this.MainForm_Load);

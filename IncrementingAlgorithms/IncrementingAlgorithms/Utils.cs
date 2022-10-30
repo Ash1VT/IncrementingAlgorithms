@@ -24,7 +24,7 @@ namespace IncrementingAlgorithms
             return resultBitmap;
         }
 
-        public static bool ValidatePoint(Point point, int sourceBitmapWidth, int sourceBitmapHeight)
+        public static bool ValidatePoint(PointF point, int sourceBitmapWidth, int sourceBitmapHeight)
         {
             return point.X >=0 && 
                    point.X <= sourceBitmapWidth &&
@@ -32,7 +32,7 @@ namespace IncrementingAlgorithms
                    point.Y <= sourceBitmapHeight;
         }
 
-        public static bool ValidatePoint(int x, int y, int sourceBitmapWidth, int sourceBitmapHeight)
+        public static bool ValidatePoint(float x, float y, int sourceBitmapWidth, int sourceBitmapHeight)
         {
             return x >= 0 &&
                    x <= sourceBitmapWidth &&
@@ -40,37 +40,37 @@ namespace IncrementingAlgorithms
                    y <= sourceBitmapHeight;
         }
 
-        public static Point GetRotationalCenter(Point firstPoint, Point secondPoint, int firstPointDistance)
+        public static PointF GetRotationalCenter(PointF firstPoint, PointF secondPoint, int firstPointDistance)
         {
             //GETS POINT ON A PASSED DISTANCE FROM FIRST POINT ON THE LINE
-            double c = secondPoint.X - firstPoint.X;
-            double d = secondPoint.Y - firstPoint.Y;
+            float c = secondPoint.X - firstPoint.X;
+            float d = secondPoint.Y - firstPoint.Y;
 
-            double ad = 1;
-            double bd = -2 * firstPoint.Y;
-            double cd = firstPoint.Y * firstPoint.Y - (firstPointDistance * firstPointDistance * d * d) / (c * c + d * d);
+            float ad = 1;
+            float bd = -2 * firstPoint.Y;
+            float cd = firstPoint.Y * firstPoint.Y - (firstPointDistance * firstPointDistance * d * d) / (c * c + d * d);
 
-            double D = (bd * bd - 4.0 * ad * cd);
+            float D = (float)(bd * bd - 4.0 * ad * cd);
 
-            double y1 = ((-bd + Math.Sqrt(Math.Abs(D))) / (2.0 * ad));
-            double y2 = ((-bd - Math.Sqrt(Math.Abs(D))) / (2.0 * ad));
-
-
-            double y = secondPoint.Y <= firstPoint.Y ? y2 : y1;
-
-            double deltaXSquared = (firstPointDistance * firstPointDistance - (y - firstPoint.Y) * (y - firstPoint.Y));
-
-            double deltaX1 = Math.Sqrt(deltaXSquared);
-            double deltaX2 = -Math.Sqrt(deltaXSquared);
-
-            double x1 = deltaX1 + firstPoint.X;
-            double x2 = deltaX2 + firstPoint.X;
+            float y1 = (float)((-bd + Math.Sqrt(Math.Abs(D))) / (2.0 * ad));
+            float y2 = (float)((-bd - Math.Sqrt(Math.Abs(D))) / (2.0 * ad));
 
 
-            double x = secondPoint.X <= firstPoint.X ? x2 : x1;
+            float y = secondPoint.Y <= firstPoint.Y ? y2 : y1;
+
+            float deltaXSquared = (firstPointDistance * firstPointDistance - (y - firstPoint.Y) * (y - firstPoint.Y));
+
+            float deltaX1 = (float)Math.Sqrt(deltaXSquared);
+            float deltaX2 = (float)-Math.Sqrt(deltaXSquared);
+
+            float x1 = deltaX1 + firstPoint.X;
+            float x2 = deltaX2 + firstPoint.X;
+
+
+            float x = secondPoint.X <= firstPoint.X ? x2 : x1;
             
            
-            return new Point((int)Math.Round(x), (int)Math.Round(y));
+            return new PointF(x, y);
         }
 
         public static double GetAngularSpeed(double speed, double radius)
@@ -78,30 +78,35 @@ namespace IncrementingAlgorithms
             return speed / radius;
         }
 
-        public static int GetRotationalRadius(Point point, Point rotationalCenter)
+        public static double GetRotationalRadius(PointF point, PointF rotationalCenter)
         {
-            return (int)Math.Sqrt(Math.Pow(point.X - rotationalCenter.X, 2) +
+            return Math.Sqrt(Math.Pow(point.X - rotationalCenter.X, 2) +
                                   Math.Pow(point.Y - rotationalCenter.Y, 2));
             
         }
-        public static MovingLine MoveLine(MovingLine line, double time)
+        public static MovingLine MoveLine(MovingLine line, PointF rotationalCenter, double angularSpeed, double time, bool clockwise)
         {
             
             
-            Point newFirstPoint = GetNewCoordinates(line.FirstPoint, line.RotationalCenter,
-                line.AngularSpeed, time, line.Clockwise);
+            PointF newFirstPoint = GetNewCoordinates(line.FirstPoint, rotationalCenter,
+                angularSpeed, time, clockwise);
 
-            Point newSecondPoint = GetNewCoordinates(line.SecondPoint, line.RotationalCenter,
-                line.AngularSpeed, time, line.Clockwise);
+            PointF newSecondPoint = GetNewCoordinates(line.SecondPoint, rotationalCenter,
+                angularSpeed, time, clockwise);
 
+            PointF newRotationalCenter = GetNewCoordinates(line.RotationalCenter, rotationalCenter,
+                angularSpeed, time, clockwise);
+
+            if(line.Line != null)
+                line.Line = MoveLine(line.Line, rotationalCenter, angularSpeed, time, clockwise);
 
             return new MovingLine(newFirstPoint, newSecondPoint,
-                line.RotationalCenter, line.Speed, line.Clockwise, 
-                line.AngularSpeed, line.FirstPointRotationalRadius, line.SecondPointRotationalRadius);
+                newRotationalCenter, line.Speed, line.Clockwise, 
+                line.AngularSpeed, line.FirstPointRotationalRadius, line.SecondPointRotationalRadius) {Line = line.Line};
       
         }
 
-        private static Point GetNewCoordinates(Point oldPoint, Point rotationalCenter, double angularSpeed, double time, bool clockwise)
+        private static PointF GetNewCoordinates(PointF oldPoint, PointF rotationalCenter, double angularSpeed, double time, bool clockwise)
         {
             double degrees = angularSpeed * time;
 
@@ -109,12 +114,12 @@ namespace IncrementingAlgorithms
 
             int direction = clockwise ? 1 : -1;
 
-            double newX1 = ((oldPoint.X - rotationalCenter.X) * Math.Cos(radians)) -
-                direction * ((oldPoint.Y - rotationalCenter.Y) * Math.Sin(radians)) + rotationalCenter.X;
-            double newY1 = (direction * (oldPoint.X - rotationalCenter.X) * Math.Sin(radians)) +
-                ((oldPoint.Y - rotationalCenter.Y) * Math.Cos(radians) + rotationalCenter.Y);
+            float newX1 = (float)(((oldPoint.X - rotationalCenter.X) * Math.Cos(radians)) -
+                direction * ((oldPoint.Y - rotationalCenter.Y) * Math.Sin(radians)) + rotationalCenter.X);
+            float newY1 = (float)((direction * (oldPoint.X - rotationalCenter.X) * Math.Sin(radians)) +
+                ((oldPoint.Y - rotationalCenter.Y) * Math.Cos(radians) + rotationalCenter.Y));
 
-            return new Point((int)Math.Round(newX1), (int)Math.Round(newY1));
+            return new PointF(newX1, newY1);
 
         }
 

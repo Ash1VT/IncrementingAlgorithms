@@ -28,7 +28,7 @@ namespace IncrementingAlgorithms.DrawingForms
             this.Visible = false;
             PointForm form = new PointForm(sides);
             form.ShowDialog();
-            List<Point> points = form.Points;
+            List<PointF> points = form.Points;
             form.Dispose();
 
             Figure = new Polygon(points);

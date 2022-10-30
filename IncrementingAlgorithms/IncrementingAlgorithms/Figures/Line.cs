@@ -9,21 +9,21 @@ namespace IncrementingAlgorithms.Figures
 {
     public class Line : Figure
     {
-        public Point FirstPoint { get; }
-        public Point SecondPoint { get; }
+        public PointF FirstPoint { get; }
+        public PointF SecondPoint { get; }
 
 
 
-        public Line(Point firstPoint, Point secondPoint)
+        public Line(PointF firstPoint, PointF secondPoint)
         {
             FirstPoint = firstPoint;
             SecondPoint = secondPoint;
         }
         public override void Draw(Bitmap sourceBitmap, Color drawingColor)
         {
-            int xerr = 0, yerr = 0;
-            int dx = SecondPoint.X - FirstPoint.X;
-            int dy = SecondPoint.Y - FirstPoint.Y;
+            float xerr = 0, yerr = 0;
+            float dx = SecondPoint.X - FirstPoint.X;
+            float dy = SecondPoint.Y - FirstPoint.Y;
 
             int incX = GetDimensionInc(dx);
             int incY = GetDimensionInc(dy);
@@ -33,11 +33,11 @@ namespace IncrementingAlgorithms.Figures
             dy = Math.Abs(dy);
 
 
-            int d = dx > dy ? dx : dy;
+            float d = dx > dy ? dx : dy;
 
-            int x = FirstPoint.X;
-            int y = FirstPoint.Y;
-            sourceBitmap.SetPixel(x, y, drawingColor);
+            float x = FirstPoint.X;
+            float y = FirstPoint.Y;
+            sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
 
             for (int i = 0; i < d; i++)
             {
@@ -56,7 +56,7 @@ namespace IncrementingAlgorithms.Figures
                     y = y + incY;
                 }
 
-                sourceBitmap.SetPixel(x, y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
             }
 
 
@@ -68,7 +68,7 @@ namespace IncrementingAlgorithms.Figures
                    Utils.ValidatePoint(SecondPoint, sourceBitmapWidth, sourceBitmapHeight);
         }
 
-        private int GetDimensionInc(int dimensionD)
+        private int GetDimensionInc(float dimensionD)
         {
             if (dimensionD > 0)
                 return 1;

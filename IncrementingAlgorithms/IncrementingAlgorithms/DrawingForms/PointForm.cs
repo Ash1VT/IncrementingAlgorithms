@@ -14,7 +14,7 @@ namespace IncrementingAlgorithms.DrawingForms
     {
         private int _sidesLeft;
 
-        public List<Point> Points { get; } = new List<Point>();
+        public List<PointF> Points { get; } = new List<PointF>();
 
         public PointForm(int sidesLeft)
         {

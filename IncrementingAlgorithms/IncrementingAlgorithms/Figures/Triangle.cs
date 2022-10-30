@@ -9,11 +9,11 @@ namespace IncrementingAlgorithms.Figures
 {
     public class Triangle : Figure
     {
-        private Point _firstPoint;
-        private Point _secondPoint;
-        private Point _thirdPoint;
+        private PointF _firstPoint;
+        private PointF _secondPoint;
+        private PointF _thirdPoint;
 
-        public Triangle(Point firstPoint, Point secondPoint, Point thirdPoint)
+        public Triangle(PointF firstPoint, PointF secondPoint, PointF thirdPoint)
         {
             _firstPoint = firstPoint;
             _secondPoint = secondPoint;

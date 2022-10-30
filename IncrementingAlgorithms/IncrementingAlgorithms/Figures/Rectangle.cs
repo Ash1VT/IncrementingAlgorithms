@@ -9,17 +9,17 @@ namespace IncrementingAlgorithms.Figures
 {
     public class Rectangle : Figure
     {
-        private Point _firstPoint;
-        private Point _secondPoint;
-        private Point _thirdPoint;
-        private Point _fourthPoint;
+        private PointF _firstPoint;
+        private PointF _secondPoint;
+        private PointF _thirdPoint;
+        private PointF _fourthPoint;
 
-        public Rectangle(Point startPoint, int width, int height)
+        public Rectangle(PointF startPoint, int width, int height)
         {
             _firstPoint = startPoint;
-            _secondPoint = new Point(startPoint.X + width, startPoint.Y);
-            _thirdPoint = new Point(startPoint.X, startPoint.Y + height);
-            _fourthPoint = new Point(startPoint.X + width, startPoint.Y + height);
+            _secondPoint = new PointF(startPoint.X + width, startPoint.Y);
+            _thirdPoint = new PointF(startPoint.X, startPoint.Y + height);
+            _fourthPoint = new PointF(startPoint.X + width, startPoint.Y + height);
         }
         public override void Draw(Bitmap sourceBitmap, Color drawingColor)
         {

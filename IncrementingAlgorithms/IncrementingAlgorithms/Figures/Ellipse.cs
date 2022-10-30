@@ -9,11 +9,11 @@ namespace IncrementingAlgorithms.Figures
 {
     public class Ellipse : Figure
     {
-        private Point _center;
-        private int _enx;
-        private int _eny;
+        private PointF _center;
+        private double _enx;
+        private double _eny;
 
-        public Ellipse(Point center, int enx, int eny)
+        public Ellipse(PointF center, int enx, int eny)
         {
             _center = center;
             _enx = enx;
@@ -21,8 +21,8 @@ namespace IncrementingAlgorithms.Figures
         }
         public override void Draw(Bitmap sourceBitmap, Color drawingColor)
         {
-            int a = Math.Abs(_enx - _center.X);
-            int b = Math.Abs(_eny - _center.Y);
+            double a = Math.Abs(_enx - _center.X);
+            double b = Math.Abs(_eny - _center.Y);
 
             int a2 = (int)Math.Pow(a, 2);
             int b2 = (int)Math.Pow(b, 2);
@@ -30,23 +30,23 @@ namespace IncrementingAlgorithms.Figures
             int dds = 4 * a2;
             int ddt = 4 * b2;
 
-            int dxt = (int)(a2 / Math.Sqrt(a2 + b2));
+            double dxt = (a2 / Math.Sqrt(a2 + b2));
 
             int t = 0;
-            int s = -4 * a2 * b;
-            int e = (-s / 2) - 2 * b2 - a2;
+            double s = -4 * a2 * b;
+            double e = (-s / 2) - 2 * b2 - a2;
             
             int ca = -6 * b2;
             int cd = ca - 4 * a2;
 
-            int x = _center.X;
-            int y = _center.Y + b;
+            double x = _center.X;
+            double y = _center.Y + b;
 
 
-            sourceBitmap.SetPixel(x,y,drawingColor);
-            sourceBitmap.SetPixel(x, 2*_center.Y-y, drawingColor);
-            sourceBitmap.SetPixel(2*_center.X-x, 2*_center.Y-y, drawingColor);
-            sourceBitmap.SetPixel(2*_center.X-x, y, drawingColor);
+            sourceBitmap.SetPixel((int)x, (int)y,drawingColor);
+            sourceBitmap.SetPixel((int)x, (int)(2*_center.Y-y), drawingColor);
+            sourceBitmap.SetPixel((int)(2*_center.X-x), (int)(2*_center.Y-y), drawingColor);
+            sourceBitmap.SetPixel((int)(2*_center.X-x), (int)y, drawingColor);
 
             for (int index = 1; index <= dxt; index++)
             {
@@ -62,10 +62,10 @@ namespace IncrementingAlgorithms.Figures
                 }
 
                 t -= ddt;
-                sourceBitmap.SetPixel(x, y, drawingColor);
-                sourceBitmap.SetPixel(x, 2 * _center.Y - y, drawingColor);
-                sourceBitmap.SetPixel(2 * _center.X - x, 2 * _center.Y - y, drawingColor);
-                sourceBitmap.SetPixel(2 * _center.X - x, y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)(2 * _center.Y - y), drawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)(2 * _center.Y - y), drawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)y, drawingColor);
 
             }
 
@@ -88,10 +88,10 @@ namespace IncrementingAlgorithms.Figures
 
 
                 s += dds;
-                sourceBitmap.SetPixel(x, y, drawingColor);
-                sourceBitmap.SetPixel(x, 2 * _center.Y - y, drawingColor);
-                sourceBitmap.SetPixel(2 * _center.X - x, 2 * _center.Y - y, drawingColor);
-                sourceBitmap.SetPixel(2 * _center.X - x, y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)(2 * _center.Y - y), drawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)(2 * _center.Y - y), drawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)y, drawingColor);
 
             }
 
@@ -99,10 +99,10 @@ namespace IncrementingAlgorithms.Figures
 
         public override bool Validate(int sourceBitmapWidth, int sourceBitmapHeight)
         {
-            return Utils.ValidatePoint(_center.X + _enx, _center.Y, sourceBitmapWidth, sourceBitmapHeight) &&
-       Utils.ValidatePoint(_center.X - _enx, _center.Y, sourceBitmapWidth, sourceBitmapHeight) &&
-       Utils.ValidatePoint(_center.X, _center.Y - _eny, sourceBitmapWidth, sourceBitmapHeight) &&
-       Utils.ValidatePoint(_center.X, _center.Y + _eny, sourceBitmapWidth, sourceBitmapHeight);
+            return Utils.ValidatePoint(_center.X + (float)_enx, _center.Y, sourceBitmapWidth, sourceBitmapHeight) &&
+       Utils.ValidatePoint(_center.X - (float)_enx, _center.Y, sourceBitmapWidth, sourceBitmapHeight) &&
+       Utils.ValidatePoint(_center.X, _center.Y - (float)_eny, sourceBitmapWidth, sourceBitmapHeight) &&
+       Utils.ValidatePoint(_center.X, _center.Y + (float)_eny, sourceBitmapWidth, sourceBitmapHeight);
         }
     }
 }

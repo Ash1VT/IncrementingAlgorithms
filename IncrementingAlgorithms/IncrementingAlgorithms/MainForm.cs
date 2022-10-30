@@ -16,10 +16,10 @@ namespace IncrementingAlgorithms
     public partial class MainForm : Form
     {
         private MovingLine _line;
-        private Circle _test;
-        private Circle _test2;
+        private MovingLine _line1;
+        private MovingLine _line2;
 
-        private Line _test1;
+
 
         public MainForm()
         {
@@ -140,30 +140,42 @@ namespace IncrementingAlgorithms
         private void button1_Click(object sender, EventArgs e)
         {
 
-            _line = new MovingLine(new Point(200, 200), new Point(100, 200), 80, 30, false);
-            _test = new Circle(_line.RotationalCenter, _line.FirstPointRotationalRadius);
-            _test2 = new Circle(_line.RotationalCenter, _line.SecondPointRotationalRadius);
-            _test1 = new Line(new Point(60, 100), _line.RotationalCenter);
+            _line = new MovingLine(new PointF(200, 200), new PointF(100, 200), 0, 30, false);
+            _line1 = new MovingLine(new PointF(100, 150), new PointF(100, 250), 50, 50, true);
+            _line2 = new MovingLine(new PointF(50, 150), new PointF(100, 150), 50, 20, true);
+            _line.Line = _line1;
+            _line1.Line = _line2;
             
 
             DrawFigure(_line, Color.Black);
-            DrawFigure(_test, Color.Aqua);
-            DrawFigure(_test2, Color.Aqua);
-            DrawFigure(_test1, Color.Red);
-
+            DrawFigure(_line1, Color.Blue);
+            DrawFigure(_line2, Color.Red);
 
             timer1.Start();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             ResetDrawingPictureBox();
-            _line = Utils.MoveLine(_line, timer1.Interval);
-            
+            _line = Utils.MoveLine(_line, _line.RotationalCenter, _line.AngularSpeed, timer1.Interval, _line.Clockwise);
+            _line1 = _line.Line;
+
+            _line1 = Utils.MoveLine(_line1, _line1.RotationalCenter, _line1.AngularSpeed, timer1.Interval,
+                _line1.Clockwise);
+            _line2 = _line1.Line;
+
+            _line2 = Utils.MoveLine(_line2, _line2.RotationalCenter, _line2.AngularSpeed, timer1.Interval,
+                _line2.Clockwise);
+
+
+            _line.Line = _line1;
+            _line1.Line = _line2;
+
             DrawFigure(_line, Color.Black);
-            DrawFigure(_test, Color.Aqua);
-            DrawFigure(_test1, Color.Red);
-            DrawFigure(_test2, Color.Aqua);
+            DrawFigure(_line1, Color.Blue);
+            DrawFigure(_line2, Color.Red);
+
         }
     }
 }

@@ -9,8 +9,8 @@ namespace IncrementingAlgorithms.Figures
 {
     public class Polygon : Figure
     {
-        private List<Point> _points;
-        public Polygon(List<Point> points)
+        private List<PointF> _points;
+        public Polygon(List<PointF> points)
         {
             _points = points;
         }
