@@ -18,6 +18,7 @@ namespace IncrementingAlgorithms
         private MovingLine _line;
         private MovingLine _line1;
         private MovingLine _line2;
+        private MovingLine _line3;
 
 
 
@@ -142,14 +143,18 @@ namespace IncrementingAlgorithms
 
             _line = new MovingLine(new PointF(200, 200), new PointF(100, 200), 0, 30, false);
             _line1 = new MovingLine(new PointF(100, 150), new PointF(100, 250), 50, 50, true);
-            _line2 = new MovingLine(new PointF(50, 150), new PointF(100, 150), 50, 20, true);
+            _line2 = new MovingLine(new PointF(50, 150), new PointF(100, 150), 50, 20, false);
+            _line3 = new MovingLine(new PointF(70, 100), new PointF(70, 200), 50, 90, true);
+
             _line.Line = _line1;
             _line1.Line = _line2;
-            
+            _line2.Line = _line3;
 
             DrawFigure(_line, Color.Black);
             DrawFigure(_line1, Color.Blue);
             DrawFigure(_line2, Color.Red);
+            DrawFigure(_line3, Color.DarkGreen);
+
 
             timer1.Start();
 
@@ -167,14 +172,19 @@ namespace IncrementingAlgorithms
 
             _line2 = Utils.MoveLine(_line2, _line2.RotationalCenter, _line2.AngularSpeed, timer1.Interval,
                 _line2.Clockwise);
+            _line3 = _line2.Line;
 
-
+            _line3 = Utils.MoveLine(_line3, _line3.RotationalCenter, _line3.AngularSpeed, timer1.Interval,
+               _line3.Clockwise);
             _line.Line = _line1;
             _line1.Line = _line2;
+            _line2.Line = _line3;
+
 
             DrawFigure(_line, Color.Black);
             DrawFigure(_line1, Color.Blue);
             DrawFigure(_line2, Color.Red);
+            DrawFigure(_line3, Color.DarkGreen);
 
         }
     }
