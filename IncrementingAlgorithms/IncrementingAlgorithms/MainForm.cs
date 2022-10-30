@@ -141,10 +141,10 @@ namespace IncrementingAlgorithms
         private void button1_Click(object sender, EventArgs e)
         {
 
-            _line = new MovingLine(new PointF(200, 200), new PointF(100, 200), 0, 30, false);
-            _line1 = new MovingLine(new PointF(100, 150), new PointF(100, 250), 50, 50, true);
-            _line2 = new MovingLine(new PointF(50, 150), new PointF(100, 150), 50, 20, false);
-            _line3 = new MovingLine(new PointF(70, 100), new PointF(70, 200), 50, 90, true);
+            _line = new MovingLine(new PointF(250, 200), new PointF(150, 200), 0, 30, false);
+            _line1 = new MovingLine(new PointF(150, 150), new PointF(150, 250), 50, 50, true);
+            _line2 = new MovingLine(new PointF(100, 150), new PointF(150, 150), 50, 20, false);
+            _line3 = new MovingLine(new PointF(120, 100), new PointF(120, 200), 50, 90, true);
 
             _line.Line = _line1;
             _line1.Line = _line2;

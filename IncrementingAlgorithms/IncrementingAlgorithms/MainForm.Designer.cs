@@ -58,7 +58,7 @@ namespace IncrementingAlgorithms
             this.drawingPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.drawingPictureBox.Location = new System.Drawing.Point(12, 12);
             this.drawingPictureBox.Name = "drawingPictureBox";
-            this.drawingPictureBox.Size = new System.Drawing.Size(443, 467);
+            this.drawingPictureBox.Size = new System.Drawing.Size(521, 467);
             this.drawingPictureBox.TabIndex = 0;
             this.drawingPictureBox.TabStop = false;
             // 
@@ -80,7 +80,7 @@ namespace IncrementingAlgorithms
             this.figuresDrawingPanel.Controls.Add(this.figuresComboBox);
             this.figuresDrawingPanel.Controls.Add(this.label1);
             this.figuresDrawingPanel.Controls.Add(this.drawButton);
-            this.figuresDrawingPanel.Location = new System.Drawing.Point(471, 12);
+            this.figuresDrawingPanel.Location = new System.Drawing.Point(555, 12);
             this.figuresDrawingPanel.Name = "figuresDrawingPanel";
             this.figuresDrawingPanel.Size = new System.Drawing.Size(352, 201);
             this.figuresDrawingPanel.TabIndex = 2;
@@ -178,7 +178,7 @@ namespace IncrementingAlgorithms
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(471, 235);
+            this.panel1.Location = new System.Drawing.Point(555, 235);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(351, 244);
             this.panel1.TabIndex = 3;
@@ -213,7 +213,7 @@ namespace IncrementingAlgorithms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 567);
+            this.ClientSize = new System.Drawing.Size(937, 567);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.figuresDrawingPanel);
             this.Controls.Add(this.drawingPictureBox);
