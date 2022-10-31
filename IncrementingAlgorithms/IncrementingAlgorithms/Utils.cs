@@ -84,7 +84,7 @@ namespace IncrementingAlgorithms
                                   Math.Pow(point.Y - rotationalCenter.Y, 2));
             
         }
-        public static MovingLine MoveLine(MovingLine line, PointF rotationalCenter, double angularSpeed, double time, bool clockwise)
+        public static bool MoveLine(MovingLine line, PointF rotationalCenter, double angularSpeed, double time, bool clockwise)
         {
             
             
@@ -97,13 +97,20 @@ namespace IncrementingAlgorithms
             PointF newRotationalCenter = GetNewCoordinates(line.RotationalCenter, rotationalCenter,
                 angularSpeed, time, clockwise);
 
-            if(line.Line != null)
-                line.Line = MoveLine(line.Line, rotationalCenter, angularSpeed, time, clockwise);
+            line.FirstPoint = newFirstPoint;
+            line.SecondPoint = newSecondPoint;
+            line.RotationalCenter = newRotationalCenter;
 
-            return new MovingLine(newFirstPoint, newSecondPoint,
-                newRotationalCenter, line.Speed, line.Clockwise, 
-                line.AngularSpeed, line.FirstPointRotationalRadius, line.SecondPointRotationalRadius) {Line = line.Line};
-      
+
+            if (line.DependingLine != null)
+            {
+                MoveLine(line.DependingLine, rotationalCenter, angularSpeed, time, clockwise);
+                MoveLine(line.DependingLine, line.DependingLine.RotationalCenter, line.DependingLine.AngularSpeed, time,
+                    line.DependingLine.Clockwise);
+            }
+
+            return true;
+
         }
 
         private static PointF GetNewCoordinates(PointF oldPoint, PointF rotationalCenter, double angularSpeed, double time, bool clockwise)
@@ -123,6 +130,19 @@ namespace IncrementingAlgorithms
 
         }
 
+        public static double GetLength(Line line)
+        {
+            double deltaX = line.SecondPoint.X - line.FirstPoint.X;
+            double deltaY = line.SecondPoint.Y - line.FirstPoint.Y;
+
+            return Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+        }
+
+        public static List<MovingLine> GetMovingLines(List<Figure> figures)
+        {
+            return figures.FindAll(x => x is MovingLine).ConvertAll(
+                new Converter<Figure, MovingLine>((Figure figure) => figure as MovingLine));
+        }
 
     }
 }

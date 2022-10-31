@@ -13,21 +13,21 @@ namespace IncrementingAlgorithms.Figures
         private PointF _secondPoint;
         private PointF _thirdPoint;
 
-        public Triangle(PointF firstPoint, PointF secondPoint, PointF thirdPoint)
+        public Triangle(PointF firstPoint, PointF secondPoint, PointF thirdPoint, Color drawingColor):base(drawingColor)
         {
             _firstPoint = firstPoint;
             _secondPoint = secondPoint;
             _thirdPoint = thirdPoint;
         }
 
-        public override void Draw(Bitmap sourceBitmap, Color drawingColor)
+        public override void Draw(Bitmap sourceBitmap)
         {
-            Line firstLine = new Line(_firstPoint, _secondPoint);
-            Line secondLine = new Line(_secondPoint, _thirdPoint);
-            Line thirdLine = new Line(_firstPoint, _thirdPoint);
-            firstLine.Draw(sourceBitmap, drawingColor);
-            secondLine.Draw(sourceBitmap, drawingColor);
-            thirdLine.Draw(sourceBitmap, drawingColor);
+            Line firstLine = new Line(_firstPoint, _secondPoint, DrawingColor);
+            Line secondLine = new Line(_secondPoint, _thirdPoint, DrawingColor);
+            Line thirdLine = new Line(_firstPoint, _thirdPoint, DrawingColor);
+            firstLine.Draw(sourceBitmap);
+            secondLine.Draw(sourceBitmap);
+            thirdLine.Draw(sourceBitmap);
         }
 
         public override bool Validate(int sourceBitmapWidth, int sourceBitmapHeight)
@@ -35,6 +35,14 @@ namespace IncrementingAlgorithms.Figures
             return Utils.ValidatePoint(_firstPoint, sourceBitmapWidth, sourceBitmapHeight) &&
                    Utils.ValidatePoint(_secondPoint, sourceBitmapWidth, sourceBitmapHeight) &&
                    Utils.ValidatePoint(_thirdPoint, sourceBitmapWidth, sourceBitmapHeight);
+        }
+
+        public override string GetFullCharacteristics()
+        {
+            return base.GetFullCharacteristics() +
+                   $"First point: {_firstPoint.X} {_firstPoint.Y}\n" +
+                   $"Second point: {_secondPoint.X} {_secondPoint.Y}\n" +
+                   $"Third point: {_thirdPoint.X} {_thirdPoint.Y}\n";
         }
     }
 }

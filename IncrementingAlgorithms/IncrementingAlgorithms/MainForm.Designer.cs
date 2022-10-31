@@ -33,30 +33,27 @@ namespace IncrementingAlgorithms
             this.drawingPictureBox = new System.Windows.Forms.PictureBox();
             this.drawButton = new System.Windows.Forms.Button();
             this.figuresDrawingPanel = new System.Windows.Forms.Panel();
-            this.colorPanel = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.bTextBox = new System.Windows.Forms.TextBox();
-            this.gTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.rTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.figuresComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.drawingPictureBox)).BeginInit();
             this.figuresDrawingPanel.SuspendLayout();
-            this.colorPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // drawingPictureBox
             // 
             this.drawingPictureBox.BackColor = System.Drawing.Color.White;
             this.drawingPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.drawingPictureBox.Location = new System.Drawing.Point(12, 12);
+            this.drawingPictureBox.Location = new System.Drawing.Point(12, 47);
             this.drawingPictureBox.Name = "drawingPictureBox";
             this.drawingPictureBox.Size = new System.Drawing.Size(521, 467);
             this.drawingPictureBox.TabIndex = 0;
@@ -65,7 +62,7 @@ namespace IncrementingAlgorithms
             // drawButton
             // 
             this.drawButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.drawButton.Location = new System.Drawing.Point(13, 142);
+            this.drawButton.Location = new System.Drawing.Point(13, 99);
             this.drawButton.Name = "drawButton";
             this.drawButton.Size = new System.Drawing.Size(326, 44);
             this.drawButton.TabIndex = 1;
@@ -76,82 +73,13 @@ namespace IncrementingAlgorithms
             // figuresDrawingPanel
             // 
             this.figuresDrawingPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.figuresDrawingPanel.Controls.Add(this.colorPanel);
             this.figuresDrawingPanel.Controls.Add(this.figuresComboBox);
             this.figuresDrawingPanel.Controls.Add(this.label1);
             this.figuresDrawingPanel.Controls.Add(this.drawButton);
-            this.figuresDrawingPanel.Location = new System.Drawing.Point(555, 12);
+            this.figuresDrawingPanel.Location = new System.Drawing.Point(555, 47);
             this.figuresDrawingPanel.Name = "figuresDrawingPanel";
-            this.figuresDrawingPanel.Size = new System.Drawing.Size(352, 201);
+            this.figuresDrawingPanel.Size = new System.Drawing.Size(352, 161);
             this.figuresDrawingPanel.TabIndex = 2;
-            // 
-            // colorPanel
-            // 
-            this.colorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.colorPanel.Controls.Add(this.label5);
-            this.colorPanel.Controls.Add(this.bTextBox);
-            this.colorPanel.Controls.Add(this.gTextBox);
-            this.colorPanel.Controls.Add(this.label7);
-            this.colorPanel.Controls.Add(this.rTextBox);
-            this.colorPanel.Controls.Add(this.label6);
-            this.colorPanel.Location = new System.Drawing.Point(13, 90);
-            this.colorPanel.Name = "colorPanel";
-            this.colorPanel.Size = new System.Drawing.Size(326, 46);
-            this.colorPanel.TabIndex = 15;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(8, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 27);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "R:";
-            // 
-            // bTextBox
-            // 
-            this.bTextBox.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bTextBox.Location = new System.Drawing.Point(256, 11);
-            this.bTextBox.Name = "bTextBox";
-            this.bTextBox.Size = new System.Drawing.Size(61, 25);
-            this.bTextBox.TabIndex = 17;
-            // 
-            // gTextBox
-            // 
-            this.gTextBox.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gTextBox.Location = new System.Drawing.Point(153, 11);
-            this.gTextBox.Name = "gTextBox";
-            this.gTextBox.Size = new System.Drawing.Size(61, 25);
-            this.gTextBox.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(219, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 27);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "B:";
-            // 
-            // rTextBox
-            // 
-            this.rTextBox.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rTextBox.Location = new System.Drawing.Point(47, 11);
-            this.rTextBox.Name = "rTextBox";
-            this.rTextBox.Size = new System.Drawing.Size(60, 25);
-            this.rTextBox.TabIndex = 16;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(111, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 27);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "G:";
             // 
             // figuresComboBox
             // 
@@ -167,57 +95,101 @@ namespace IncrementingAlgorithms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(52, 14);
+            this.label1.Location = new System.Drawing.Point(83, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(255, 27);
+            this.label1.Size = new System.Drawing.Size(195, 27);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Static figures drawing";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(555, 235);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(351, 244);
-            this.panel1.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(13, 180);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(326, 44);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Draw";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(120, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 27);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Drawing";
+            this.label1.Text = "Figures drawing";
             // 
             // timer1
             // 
             this.timer1.Interval = 20;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.stopButton);
+            this.panel1.Controls.Add(this.startButton);
+            this.panel1.Location = new System.Drawing.Point(555, 225);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(352, 171);
+            this.panel1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(127, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 27);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Moving";
+            // 
+            // stopButton
+            // 
+            this.stopButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.stopButton.Location = new System.Drawing.Point(13, 109);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(326, 44);
+            this.stopButton.TabIndex = 2;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
+            // startButton
+            // 
+            this.startButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.startButton.Location = new System.Drawing.Point(13, 59);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(326, 44);
+            this.startButton.TabIndex = 1;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // clearButton
+            // 
+            this.clearButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.clearButton.Location = new System.Drawing.Point(555, 424);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(352, 90);
+            this.clearButton.TabIndex = 3;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(937, 29);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(56, 25);
+            this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(937, 567);
+            this.ClientSize = new System.Drawing.Size(937, 526);
+            this.Controls.Add(this.clearButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.figuresDrawingPanel);
             this.Controls.Add(this.drawingPictureBox);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -226,11 +198,12 @@ namespace IncrementingAlgorithms
             ((System.ComponentModel.ISupportInitialize)(this.drawingPictureBox)).EndInit();
             this.figuresDrawingPanel.ResumeLayout(false);
             this.figuresDrawingPanel.PerformLayout();
-            this.colorPanel.ResumeLayout(false);
-            this.colorPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -241,17 +214,14 @@ namespace IncrementingAlgorithms
         private System.Windows.Forms.Panel figuresDrawingPanel;
         private System.Windows.Forms.ComboBox figuresComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel colorPanel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox bTextBox;
-        private System.Windows.Forms.TextBox gTextBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox rTextBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
     }
 }
 

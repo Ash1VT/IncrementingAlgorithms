@@ -9,8 +9,20 @@ namespace IncrementingAlgorithms.Figures
 {
     public abstract class Figure
     {
-        public abstract void Draw(Bitmap sourceBitmap, Color drawingColor);
+
+        protected Color DrawingColor;
+
+        protected Figure(Color drawingColor)
+        {
+            DrawingColor = drawingColor;
+        }
+        public abstract void Draw(Bitmap sourceBitmap);
 
         public abstract bool Validate(int sourceBitmapWidth, int sourceBitmapHeight);
+
+        public virtual string GetFullCharacteristics()
+        {
+            return $"Type: {this.GetType().Name}\n";
+        }
     }
 }

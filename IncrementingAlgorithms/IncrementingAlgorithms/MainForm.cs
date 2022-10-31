@@ -15,13 +15,8 @@ namespace IncrementingAlgorithms
 {
     public partial class MainForm : Form
     {
-        private MovingLine _line;
-        private MovingLine _line1;
-        private MovingLine _line2;
-        private MovingLine _line3;
 
-
-
+        private List<Figure> _figures = new List<Figure>();
         public MainForm()
         {
             InitializeComponent();
@@ -44,14 +39,9 @@ namespace IncrementingAlgorithms
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-               
-                int R = int.Parse(rTextBox.Text);
-                int G = int.Parse(gTextBox.Text);
-                int B = int.Parse(bTextBox.Text);
-                Color drawingColor = Color.FromArgb(R, G, B);
                 
-                DrawFigure(figure, drawingColor);
+                DrawFigure(figure);
+                _figures.Add(figure);
             }
         }
 
@@ -65,7 +55,8 @@ namespace IncrementingAlgorithms
                     "Ellipse",
                     "Triangle",
                     "Rectangle",
-                    "Polygon"
+                    "Polygon",
+                    "Moving line"
                 });
         }
 
@@ -81,11 +72,16 @@ namespace IncrementingAlgorithms
             drawingPictureBox.Image = Utils.CreateEmptyImage(width, height, Color.White);
         }
 
-        private void DrawFigure(Figure figure, Color drawingColor)
+        private void DrawFigure(Figure figure)
         {
             Bitmap bitmap = new Bitmap(drawingPictureBox.Image);
-            figure.Draw(bitmap, drawingColor);
+            figure.Draw(bitmap);
             drawingPictureBox.Image = bitmap;
+        }
+
+        private void DrawAllFigures()
+        {
+            _figures.ForEach(DrawFigure);
         }
         private Figure GetFigureFromForm(FigureForm form)
         {
@@ -129,6 +125,11 @@ namespace IncrementingAlgorithms
                     DrawingPolygonForm form = new DrawingPolygonForm();
                     return GetFigureFromForm(form);
                 }
+                case "Moving line":
+                {
+                    DrawingMovingLineForm form = new DrawingMovingLineForm(Utils.GetMovingLines(_figures));
+                    return GetFigureFromForm(form);
+                }
                 default:
                 {
                     MessageBox.Show("Cannot find figure with this name", "Error", MessageBoxButtons.OK,
@@ -138,54 +139,39 @@ namespace IncrementingAlgorithms
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            _line = new MovingLine(new PointF(250, 200), new PointF(150, 200), 0, 30, false);
-            _line1 = new MovingLine(new PointF(150, 150), new PointF(150, 250), 50, 50, true);
-            _line2 = new MovingLine(new PointF(100, 150), new PointF(150, 150), 50, 20, false);
-            _line3 = new MovingLine(new PointF(120, 100), new PointF(120, 200), 50, 90, true);
-
-            _line.Line = _line1;
-            _line1.Line = _line2;
-            _line2.Line = _line3;
-
-            DrawFigure(_line, Color.Black);
-            DrawFigure(_line1, Color.Blue);
-            DrawFigure(_line2, Color.Red);
-            DrawFigure(_line3, Color.DarkGreen);
-
-
-            timer1.Start();
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             ResetDrawingPictureBox();
-            _line = Utils.MoveLine(_line, _line.RotationalCenter, _line.AngularSpeed, timer1.Interval, _line.Clockwise);
-            _line1 = _line.Line;
+            if (_figures.Find(x => x is MovingLine) != null)
+            {
+                List<MovingLine> movingLines = Utils.GetMovingLines(_figures);
+                movingLines.ForEach((MovingLine line) => Utils.MoveLine(line, line.RotationalCenter, line.AngularSpeed, timer1.Interval, line.Clockwise));
+            }
+            DrawAllFigures();
 
-            _line1 = Utils.MoveLine(_line1, _line1.RotationalCenter, _line1.AngularSpeed, timer1.Interval,
-                _line1.Clockwise);
-            _line2 = _line1.Line;
+        }
 
-            _line2 = Utils.MoveLine(_line2, _line2.RotationalCenter, _line2.AngularSpeed, timer1.Interval,
-                _line2.Clockwise);
-            _line3 = _line2.Line;
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
 
-            _line3 = Utils.MoveLine(_line3, _line3.RotationalCenter, _line3.AngularSpeed, timer1.Interval,
-               _line3.Clockwise);
-            _line.Line = _line1;
-            _line1.Line = _line2;
-            _line2.Line = _line3;
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+        }
 
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            ResetDrawingPictureBox();
+            _figures.Clear();
+        }
 
-            DrawFigure(_line, Color.Black);
-            DrawFigure(_line1, Color.Blue);
-            DrawFigure(_line2, Color.Red);
-            DrawFigure(_line3, Color.DarkGreen);
-
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InfoForm form = new InfoForm(_figures);
+            form.ShowDialog();
+            form.Dispose();
         }
     }
 }

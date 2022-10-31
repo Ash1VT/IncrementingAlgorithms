@@ -11,10 +11,12 @@ namespace IncrementingAlgorithms.DrawingForms
 {
     public class FigureForm : Form
     {
+        protected Color DrawingColor;
+
         public Figure Figure { get; set; }
 
-
         public bool FigureCreated { get; set; }
+
 
     }
 }

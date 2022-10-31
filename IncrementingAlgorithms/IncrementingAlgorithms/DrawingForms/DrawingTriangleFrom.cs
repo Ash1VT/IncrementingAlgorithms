@@ -19,7 +19,8 @@ namespace IncrementingAlgorithms.DrawingForms
         }
         private void DrawingTriangleFrom_Load(object sender, EventArgs e)
         {
-
+            DrawingColor = Color.Black;
+            InitRgbLabels();
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -34,7 +35,8 @@ namespace IncrementingAlgorithms.DrawingForms
             Figure = new Triangle(
                 new Point(x1, y1),
                 new Point(x2, y2),
-                new Point(x3, y3)
+                new Point(x3, y3),
+                DrawingColor
                 );
             FigureCreated = true;
             this.Close();
@@ -47,6 +49,22 @@ namespace IncrementingAlgorithms.DrawingForms
             this.Close();
         }
 
+        private void selectColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                DrawingColor = dialog.Color;
+            }
+            dialog.Dispose();
+            InitRgbLabels();
+        }
 
+        private void InitRgbLabels()
+        {
+            rLabel.Text = DrawingColor.R.ToString();
+            gLabel.Text = DrawingColor.G.ToString();
+            bLabel.Text = DrawingColor.B.ToString();
+        }
     }
 }

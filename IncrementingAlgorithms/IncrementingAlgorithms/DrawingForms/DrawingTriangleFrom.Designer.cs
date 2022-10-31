@@ -44,11 +44,22 @@ namespace IncrementingAlgorithms.DrawingForms
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.colorPanel = new System.Windows.Forms.Panel();
+            this.bLabel = new System.Windows.Forms.Label();
+            this.gLabel = new System.Windows.Forms.Label();
+            this.rLabel = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.selectColorButton = new System.Windows.Forms.Button();
             this.figureInformationPanel.SuspendLayout();
+            this.colorPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // figureInformationPanel
             // 
+            this.figureInformationPanel.Controls.Add(this.colorPanel);
             this.figureInformationPanel.Controls.Add(this.y3TextBox);
             this.figureInformationPanel.Controls.Add(this.x3TextBox);
             this.figureInformationPanel.Controls.Add(this.label5);
@@ -65,7 +76,7 @@ namespace IncrementingAlgorithms.DrawingForms
             this.figureInformationPanel.Controls.Add(this.label1);
             this.figureInformationPanel.Location = new System.Drawing.Point(6, 12);
             this.figureInformationPanel.Name = "figureInformationPanel";
-            this.figureInformationPanel.Size = new System.Drawing.Size(325, 187);
+            this.figureInformationPanel.Size = new System.Drawing.Size(325, 351);
             this.figureInformationPanel.TabIndex = 14;
             // 
             // y3TextBox
@@ -107,7 +118,7 @@ namespace IncrementingAlgorithms.DrawingForms
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cancelButton.Location = new System.Drawing.Point(174, 129);
+            this.cancelButton.Location = new System.Drawing.Point(174, 298);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(143, 44);
             this.cancelButton.TabIndex = 12;
@@ -118,9 +129,9 @@ namespace IncrementingAlgorithms.DrawingForms
             // okButton
             // 
             this.okButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.okButton.Location = new System.Drawing.Point(8, 129);
+            this.okButton.Location = new System.Drawing.Point(8, 298);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(160, 44);
+            this.okButton.Size = new System.Drawing.Size(149, 44);
             this.okButton.TabIndex = 11;
             this.okButton.Text = "Ok";
             this.okButton.UseVisualStyleBackColor = true;
@@ -198,11 +209,107 @@ namespace IncrementingAlgorithms.DrawingForms
             this.label1.TabIndex = 3;
             this.label1.Text = "X1:";
             // 
+            // colorPanel
+            // 
+            this.colorPanel.Controls.Add(this.bLabel);
+            this.colorPanel.Controls.Add(this.gLabel);
+            this.colorPanel.Controls.Add(this.rLabel);
+            this.colorPanel.Controls.Add(this.label7);
+            this.colorPanel.Controls.Add(this.label8);
+            this.colorPanel.Controls.Add(this.label9);
+            this.colorPanel.Controls.Add(this.label10);
+            this.colorPanel.Controls.Add(this.selectColorButton);
+            this.colorPanel.Location = new System.Drawing.Point(0, 145);
+            this.colorPanel.Name = "colorPanel";
+            this.colorPanel.Size = new System.Drawing.Size(325, 137);
+            this.colorPanel.TabIndex = 22;
+            // 
+            // bLabel
+            // 
+            this.bLabel.AutoSize = true;
+            this.bLabel.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.bLabel.Location = new System.Drawing.Point(257, 49);
+            this.bLabel.Name = "bLabel";
+            this.bLabel.Size = new System.Drawing.Size(28, 27);
+            this.bLabel.TabIndex = 22;
+            this.bLabel.Text = "{}";
+            // 
+            // gLabel
+            // 
+            this.gLabel.AutoSize = true;
+            this.gLabel.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.gLabel.Location = new System.Drawing.Point(153, 49);
+            this.gLabel.Name = "gLabel";
+            this.gLabel.Size = new System.Drawing.Size(28, 27);
+            this.gLabel.TabIndex = 21;
+            this.gLabel.Text = "{}";
+            // 
+            // rLabel
+            // 
+            this.rLabel.AutoSize = true;
+            this.rLabel.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rLabel.Location = new System.Drawing.Point(49, 49);
+            this.rLabel.Name = "rLabel";
+            this.rLabel.Size = new System.Drawing.Size(28, 27);
+            this.rLabel.TabIndex = 20;
+            this.rLabel.Text = "{}";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(218, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 27);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "B:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(109, 49);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 27);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "G:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(9, 49);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 27);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "R:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(71, 10);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(180, 27);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Selected color:";
+            // 
+            // selectColorButton
+            // 
+            this.selectColorButton.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.selectColorButton.Location = new System.Drawing.Point(8, 85);
+            this.selectColorButton.Name = "selectColorButton";
+            this.selectColorButton.Size = new System.Drawing.Size(309, 44);
+            this.selectColorButton.TabIndex = 15;
+            this.selectColorButton.Text = "Select color";
+            this.selectColorButton.UseVisualStyleBackColor = true;
+            this.selectColorButton.Click += new System.EventHandler(this.selectColorButton_Click);
+            // 
             // DrawingTriangleFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 211);
+            this.ClientSize = new System.Drawing.Size(339, 370);
             this.Controls.Add(this.figureInformationPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -212,6 +319,8 @@ namespace IncrementingAlgorithms.DrawingForms
             this.Load += new System.EventHandler(this.DrawingTriangleFrom_Load);
             this.figureInformationPanel.ResumeLayout(false);
             this.figureInformationPanel.PerformLayout();
+            this.colorPanel.ResumeLayout(false);
+            this.colorPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -233,5 +342,14 @@ namespace IncrementingAlgorithms.DrawingForms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel colorPanel;
+        private System.Windows.Forms.Label bLabel;
+        private System.Windows.Forms.Label gLabel;
+        private System.Windows.Forms.Label rLabel;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button selectColorButton;
     }
 }

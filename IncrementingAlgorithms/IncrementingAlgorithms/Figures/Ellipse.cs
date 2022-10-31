@@ -13,13 +13,13 @@ namespace IncrementingAlgorithms.Figures
         private double _enx;
         private double _eny;
 
-        public Ellipse(PointF center, int enx, int eny)
+        public Ellipse(PointF center, int enx, int eny, Color drawingColor) : base(drawingColor)
         {
             _center = center;
             _enx = enx;
             _eny = eny;
         }
-        public override void Draw(Bitmap sourceBitmap, Color drawingColor)
+        public override void Draw(Bitmap sourceBitmap)
         {
             double a = Math.Abs(_enx - _center.X);
             double b = Math.Abs(_eny - _center.Y);
@@ -43,10 +43,10 @@ namespace IncrementingAlgorithms.Figures
             double y = _center.Y + b;
 
 
-            sourceBitmap.SetPixel((int)x, (int)y,drawingColor);
-            sourceBitmap.SetPixel((int)x, (int)(2*_center.Y-y), drawingColor);
-            sourceBitmap.SetPixel((int)(2*_center.X-x), (int)(2*_center.Y-y), drawingColor);
-            sourceBitmap.SetPixel((int)(2*_center.X-x), (int)y, drawingColor);
+            sourceBitmap.SetPixel((int)x, (int)y, DrawingColor);
+            sourceBitmap.SetPixel((int)x, (int)(2*_center.Y-y), DrawingColor);
+            sourceBitmap.SetPixel((int)(2*_center.X-x), (int)(2*_center.Y-y), DrawingColor);
+            sourceBitmap.SetPixel((int)(2*_center.X-x), (int)y, DrawingColor);
 
             for (int index = 1; index <= dxt; index++)
             {
@@ -62,10 +62,10 @@ namespace IncrementingAlgorithms.Figures
                 }
 
                 t -= ddt;
-                sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
-                sourceBitmap.SetPixel((int)x, (int)(2 * _center.Y - y), drawingColor);
-                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)(2 * _center.Y - y), drawingColor);
-                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)y, DrawingColor);
+                sourceBitmap.SetPixel((int)x, (int)(2 * _center.Y - y), DrawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)(2 * _center.Y - y), DrawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)y, DrawingColor);
 
             }
 
@@ -88,10 +88,10 @@ namespace IncrementingAlgorithms.Figures
 
 
                 s += dds;
-                sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
-                sourceBitmap.SetPixel((int)x, (int)(2 * _center.Y - y), drawingColor);
-                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)(2 * _center.Y - y), drawingColor);
-                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)y, DrawingColor);
+                sourceBitmap.SetPixel((int)x, (int)(2 * _center.Y - y), DrawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)(2 * _center.Y - y), DrawingColor);
+                sourceBitmap.SetPixel((int)(2 * _center.X - x), (int)y, DrawingColor);
 
             }
 
@@ -103,6 +103,14 @@ namespace IncrementingAlgorithms.Figures
        Utils.ValidatePoint(_center.X - (float)_enx, _center.Y, sourceBitmapWidth, sourceBitmapHeight) &&
        Utils.ValidatePoint(_center.X, _center.Y - (float)_eny, sourceBitmapWidth, sourceBitmapHeight) &&
        Utils.ValidatePoint(_center.X, _center.Y + (float)_eny, sourceBitmapWidth, sourceBitmapHeight);
+        }
+
+        public override string GetFullCharacteristics()
+        {
+            return base.GetFullCharacteristics() +
+                   $"Center: {_center.X} {_center.Y}\n" +
+                   $"EnX: {_enx}\n" +
+                   $"EnY: {_eny}\n";
         }
     }
 }

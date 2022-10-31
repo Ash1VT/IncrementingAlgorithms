@@ -20,7 +20,8 @@ namespace IncrementingAlgorithms.DrawingForms
 
         private void DrawingPolygonForm_Load(object sender, EventArgs e)
         {
-
+            DrawingColor = Color.Black;
+            InitRgbLabels();
         }
         private void okButton_Click(object sender, EventArgs e)
         {
@@ -31,7 +32,7 @@ namespace IncrementingAlgorithms.DrawingForms
             List<PointF> points = form.Points;
             form.Dispose();
 
-            Figure = new Polygon(points);
+            Figure = new Polygon(points, DrawingColor);
 
             FigureCreated = true;
             this.Close();
@@ -44,6 +45,22 @@ namespace IncrementingAlgorithms.DrawingForms
             this.Close();
         }
 
+        private void selectColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                DrawingColor = dialog.Color;
+            }
+            dialog.Dispose();
+            InitRgbLabels();
+        }
 
+        private void InitRgbLabels()
+        {
+            rLabel.Text = DrawingColor.R.ToString();
+            gLabel.Text = DrawingColor.G.ToString();
+            bLabel.Text = DrawingColor.B.ToString();
+        }
     }
 }

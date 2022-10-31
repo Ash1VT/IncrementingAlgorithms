@@ -9,17 +9,17 @@ namespace IncrementingAlgorithms.Figures
 {
     public class Line : Figure
     {
-        public PointF FirstPoint { get; }
-        public PointF SecondPoint { get; }
+        public PointF FirstPoint { get; set; }
+        public PointF SecondPoint { get; set; }
 
 
 
-        public Line(PointF firstPoint, PointF secondPoint)
+        public Line(PointF firstPoint, PointF secondPoint, Color drawingColor) : base(drawingColor)
         {
             FirstPoint = firstPoint;
             SecondPoint = secondPoint;
         }
-        public override void Draw(Bitmap sourceBitmap, Color drawingColor)
+        public override void Draw(Bitmap sourceBitmap)
         {
             float xerr = 0, yerr = 0;
             float dx = SecondPoint.X - FirstPoint.X;
@@ -37,7 +37,7 @@ namespace IncrementingAlgorithms.Figures
 
             float x = FirstPoint.X;
             float y = FirstPoint.Y;
-            sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
+            sourceBitmap.SetPixel((int)x, (int)y, DrawingColor);
 
             for (int i = 0; i < d; i++)
             {
@@ -56,7 +56,7 @@ namespace IncrementingAlgorithms.Figures
                     y = y + incY;
                 }
 
-                sourceBitmap.SetPixel((int)x, (int)y, drawingColor);
+                sourceBitmap.SetPixel((int)x, (int)y, DrawingColor);
             }
 
 
@@ -66,6 +66,13 @@ namespace IncrementingAlgorithms.Figures
         {
             return Utils.ValidatePoint(FirstPoint, sourceBitmapWidth, sourceBitmapHeight) &&
                    Utils.ValidatePoint(SecondPoint, sourceBitmapWidth, sourceBitmapHeight);
+        }
+
+        public override string GetFullCharacteristics()
+        {
+            return base.GetFullCharacteristics() +
+                   $"First point: {(int)Math.Round(FirstPoint.X)} {(int)Math.Round(FirstPoint.Y)}\n" +
+                   $"Second point: {(int)Math.Round(SecondPoint.X)} {(int)Math.Round(SecondPoint.Y)}\n";
         }
 
         private int GetDimensionInc(float dimensionD)
