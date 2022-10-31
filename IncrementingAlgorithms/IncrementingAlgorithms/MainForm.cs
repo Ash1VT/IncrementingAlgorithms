@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IncrementingAlgorithms.DrawingForms;
 using IncrementingAlgorithms.Figures;
+using IncrementingAlgorithms.FillingAlgorithms;
+using IncrementingAlgorithms.FillingForms;
 
 namespace IncrementingAlgorithms
 {
@@ -79,6 +81,12 @@ namespace IncrementingAlgorithms
             drawingPictureBox.Image = bitmap;
         }
 
+        private void ApplyFillingAlgorithm(FillingAlgorithm algorithm)
+        {
+             Bitmap bitmap = new Bitmap(drawingPictureBox.Image);
+             algorithm.Fill(bitmap);
+             drawingPictureBox.Image = bitmap;
+        }
         private void DrawAllFigures()
         {
             _figures.ForEach(DrawFigure);
@@ -139,26 +147,14 @@ namespace IncrementingAlgorithms
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            ResetDrawingPictureBox();
-            if (_figures.Find(x => x is MovingLine) != null)
-            {
-                List<MovingLine> movingLines = Utils.GetMovingLines(_figures);
-                movingLines.ForEach((MovingLine line) => Utils.MoveLine(line, line.RotationalCenter, line.AngularSpeed, timer1.Interval, line.Clockwise));
-            }
-            DrawAllFigures();
-
-        }
-
         private void startButton_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            renderingTimer.Start();
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            timer1.Stop();
+            renderingTimer.Stop();
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -171,6 +167,60 @@ namespace IncrementingAlgorithms
         {
             InfoForm form = new InfoForm(_figures);
             form.ShowDialog();
+            form.Dispose();
+        }
+
+        private void renderingTimer_Tick(object sender, EventArgs e)
+        {
+            ResetDrawingPictureBox();
+            if (_figures.Find(x => x is MovingLine) != null)
+            {
+                List<MovingLine> movingLines = Utils.GetMovingLines(_figures);
+                movingLines.ForEach((MovingLine line) => Utils.MoveLine(line, line.RotationalCenter, line.AngularSpeed, renderingTimer.Interval, line.Clockwise));
+            }
+            DrawAllFigures();
+        }
+
+        private void simpleFillingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FillingForm form = new FillingForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Point startPoint = new Point(form.X, form.Y);
+                Color fillingColor = form.FillingColor;
+
+                SimpleFilling algorithm = new SimpleFilling(startPoint, fillingColor);
+                ApplyFillingAlgorithm(algorithm);
+            }
+            form.Dispose();
+
+        }
+
+        private void waveFillingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FillingForm form = new FillingForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Point startPoint = new Point(form.X, form.Y);
+                Color fillingColor = form.FillingColor;
+
+                WaveFilling algorithm = new WaveFilling(startPoint, fillingColor);
+                ApplyFillingAlgorithm(algorithm);
+            }
+            form.Dispose();
+        }
+
+        private void lineFillingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FillingForm form = new FillingForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                Point startPoint = new Point(form.X, form.Y);
+                Color fillingColor = form.FillingColor;
+
+                LineFilling algorithm = new LineFilling(startPoint, fillingColor);
+                ApplyFillingAlgorithm(algorithm);
+            }
             form.Dispose();
         }
     }

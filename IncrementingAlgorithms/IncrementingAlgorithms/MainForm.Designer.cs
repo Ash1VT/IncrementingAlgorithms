@@ -35,18 +35,22 @@ namespace IncrementingAlgorithms
             this.figuresDrawingPanel = new System.Windows.Forms.Panel();
             this.figuresComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.renderingTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.optionsMenuStrip = new System.Windows.Forms.MenuStrip();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleFillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.waveFillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lineFillingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.drawingPictureBox)).BeginInit();
             this.figuresDrawingPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.optionsMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // drawingPictureBox
@@ -101,10 +105,10 @@ namespace IncrementingAlgorithms
             this.label1.TabIndex = 2;
             this.label1.Text = "Figures drawing";
             // 
-            // timer1
+            // renderingTimer
             // 
-            this.timer1.Interval = 20;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.renderingTimer.Interval = 20;
+            this.renderingTimer.Tick += new System.EventHandler(this.renderingTimer_Tick);
             // 
             // panel1
             // 
@@ -160,15 +164,16 @@ namespace IncrementingAlgorithms
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
-            // menuStrip1
+            // optionsMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(937, 29);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
+            this.optionsMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoToolStripMenuItem,
+            this.fillingToolStripMenuItem});
+            this.optionsMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.optionsMenuStrip.Name = "optionsMenuStrip";
+            this.optionsMenuStrip.Size = new System.Drawing.Size(937, 29);
+            this.optionsMenuStrip.TabIndex = 5;
+            this.optionsMenuStrip.Text = "menuStrip1";
             // 
             // infoToolStripMenuItem
             // 
@@ -177,6 +182,38 @@ namespace IncrementingAlgorithms
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(56, 25);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // fillingToolStripMenuItem
+            // 
+            this.fillingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simpleFillingToolStripMenuItem,
+            this.waveFillingToolStripMenuItem,
+            this.lineFillingToolStripMenuItem});
+            this.fillingToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.fillingToolStripMenuItem.Name = "fillingToolStripMenuItem";
+            this.fillingToolStripMenuItem.Size = new System.Drawing.Size(79, 25);
+            this.fillingToolStripMenuItem.Text = "Filling";
+            // 
+            // simpleFillingToolStripMenuItem
+            // 
+            this.simpleFillingToolStripMenuItem.Name = "simpleFillingToolStripMenuItem";
+            this.simpleFillingToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.simpleFillingToolStripMenuItem.Text = "Simple filling";
+            this.simpleFillingToolStripMenuItem.Click += new System.EventHandler(this.simpleFillingToolStripMenuItem_Click);
+            // 
+            // waveFillingToolStripMenuItem
+            // 
+            this.waveFillingToolStripMenuItem.Name = "waveFillingToolStripMenuItem";
+            this.waveFillingToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.waveFillingToolStripMenuItem.Text = "Wave filling";
+            this.waveFillingToolStripMenuItem.Click += new System.EventHandler(this.waveFillingToolStripMenuItem_Click);
+            // 
+            // lineFillingToolStripMenuItem
+            // 
+            this.lineFillingToolStripMenuItem.Name = "lineFillingToolStripMenuItem";
+            this.lineFillingToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.lineFillingToolStripMenuItem.Text = "Line filling";
+            this.lineFillingToolStripMenuItem.Click += new System.EventHandler(this.lineFillingToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -187,9 +224,9 @@ namespace IncrementingAlgorithms
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.figuresDrawingPanel);
             this.Controls.Add(this.drawingPictureBox);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.optionsMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.optionsMenuStrip;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -200,8 +237,8 @@ namespace IncrementingAlgorithms
             this.figuresDrawingPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.optionsMenuStrip.ResumeLayout(false);
+            this.optionsMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,14 +251,18 @@ namespace IncrementingAlgorithms
         private System.Windows.Forms.Panel figuresDrawingPanel;
         private System.Windows.Forms.ComboBox figuresComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer renderingTimer;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip optionsMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fillingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simpleFillingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem waveFillingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lineFillingToolStripMenuItem;
     }
 }
 

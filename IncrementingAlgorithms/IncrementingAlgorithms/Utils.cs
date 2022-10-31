@@ -24,6 +24,7 @@ namespace IncrementingAlgorithms
             return resultBitmap;
         }
 
+        
         public static bool ValidatePoint(PointF point, int sourceBitmapWidth, int sourceBitmapHeight)
         {
             return point.X >=0 && 
@@ -144,5 +145,20 @@ namespace IncrementingAlgorithms
                 new Converter<Figure, MovingLine>((Figure figure) => figure as MovingLine));
         }
 
+
+        public static void RecursiveFilling(Bitmap sourceBitmap, Point point, Color baseColor, Color fillingColor)
+        {
+            int x = point.X;
+            int y = point.Y;
+
+            if (sourceBitmap.GetPixel(x, y).Equals(baseColor))
+            {
+                sourceBitmap.SetPixel(x, y, fillingColor);
+                RecursiveFilling(sourceBitmap, new Point(x+1,y), baseColor, fillingColor);
+                RecursiveFilling(sourceBitmap, new Point(x - 1, y), baseColor, fillingColor);
+                RecursiveFilling(sourceBitmap, new Point(x, y + 1), baseColor, fillingColor);
+                RecursiveFilling(sourceBitmap, new Point(x, y - 1), baseColor, fillingColor);
+            }
+        }
     }
 }
