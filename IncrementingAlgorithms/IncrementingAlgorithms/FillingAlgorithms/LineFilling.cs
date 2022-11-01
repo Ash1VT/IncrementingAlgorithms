@@ -16,60 +16,63 @@ namespace IncrementingAlgorithms.FillingAlgorithms
 
         public override bool Fill(Bitmap sourceBitmap)
         {
-            LineFill(sourceBitmap, StartPoint.X, StartPoint.Y, 1, StartPoint.X, StartPoint.X);
+            Color baseColor = sourceBitmap.GetPixel(StartPoint.X, StartPoint.Y);
+
+            LineFill(sourceBitmap, baseColor, StartPoint.X, StartPoint.Y, 1, StartPoint.X, StartPoint.X);
+
+            
             return true;
 
 
         }
 
-        private int LineFill(Bitmap sourceBitmap, int x, int y, int dir, int preXl, int preXr)
+        private int LineFill(Bitmap sourceBitmap, Color baseColor, int x, int y, int dir, int preXl, int preXr)
         {
             int xl = x;
             int xr = y;
 
-            Color color = sourceBitmap.GetPixel(x, y);
-            Color baseColor = sourceBitmap.GetPixel(x, y);
+            Color color = sourceBitmap.GetPixel(x,y);
 
 
-            do
-            {
+            
+            while (Utils.AreColorsEqual(color, baseColor))
                 color = sourceBitmap.GetPixel(--xl, y);
-            } while (color.Equals(baseColor));
+            
+            color = sourceBitmap.GetPixel(x,y);
 
-            do
-            {
+            while (Utils.AreColorsEqual(color, baseColor))                
                 color = sourceBitmap.GetPixel(++xr, y);
-            } while (color.Equals(baseColor));
+
 
             xl++;
             xr--;
 
 
             Line line = new Line(new PointF(xl, y),
-                new PointF(xr + 1, y),
+                new PointF(xr, y),
                 FillingColor);
             line.Draw(sourceBitmap);
-
-
-            for (x = xl; x <= xr; x++)
+            
+            
+            for (x = xl; x < xr; x++)
             {
                 color = sourceBitmap.GetPixel(x, y + dir);
-                if (color.Equals(baseColor))
-                    x = LineFill(sourceBitmap, x, y + dir, dir, xl, xr);
+                if (Utils.AreColorsEqual(color, baseColor))
+                    x = LineFill(sourceBitmap, baseColor, x, y + dir, dir, xl, xr);
             }
-
+            //
             for (x = xl; x < preXl; x++)
             {
                 color = sourceBitmap.GetPixel(x, y - dir);
-                if (color.Equals(baseColor))
-                    x = LineFill(sourceBitmap, x, y - dir, -dir, xl, xr);
+                if (!Utils.AreColorsEqual(color, baseColor))
+                    x = LineFill(sourceBitmap, baseColor, x, y - dir, -dir, xl, xr);
             }
-
+            //
             for (x = preXr; x < xr; x++)
             {
                 color = sourceBitmap.GetPixel(x, y - dir);
-                if (color.Equals(baseColor))
-                    x = LineFill(sourceBitmap, x, y - dir, -dir, xl, xr);
+                if (!Utils.AreColorsEqual(color,baseColor))
+                    x = LineFill(sourceBitmap, baseColor, x, y - dir, -dir, xl, xr);
             }
 
             return xr;

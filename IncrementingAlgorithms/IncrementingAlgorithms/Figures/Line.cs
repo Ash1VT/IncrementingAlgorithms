@@ -39,7 +39,7 @@ namespace IncrementingAlgorithms.Figures
             float y = FirstPoint.Y;
             sourceBitmap.SetPixel((int)x, (int)y, DrawingColor);
 
-            for (int i = 0; i < d; i++)
+            for (int i = 0; i <= d; i++)
             {
                 xerr = xerr + dx;
                 yerr = yerr + dy;
